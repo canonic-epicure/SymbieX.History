@@ -1,0 +1,3 @@
+Role('Symbie.Meta.Widget', {
+    
+})
