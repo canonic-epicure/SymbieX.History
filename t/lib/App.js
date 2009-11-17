@@ -4,10 +4,11 @@ Class('App', {
     
         isa : 'Symbie.Application',
         
+        does : 'SymbieX.History.Application',
+        
+        
+        
         use : [ 'App.Widget.Root' ],
-        
-        
-        
         
         has : {
             ID                  : 'App'

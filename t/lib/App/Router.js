@@ -2,7 +2,7 @@ Class('App.Router', {
     
     isa : 'Symbie.Router',
     
-    does : 'SymbieX.History',
+    does : 'SymbieX.History.Router',
     
     
     routes : {
