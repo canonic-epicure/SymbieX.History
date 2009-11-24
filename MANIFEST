@@ -1,0 +1,20 @@
+inc/Module/Build/Functions/DSL.pm
+inc/Module/Build/JSAN/Installable.pm
+inc/Module/JSAN.pm
+inc/Module/JSAN/DSL.pm
+lib/SymbieX/History/Router.js
+MANIFEST			This list of files
+MANIFEST.SKIP
+README.md
+t/010_basics.t.js
+t/index.html
+t/lib/App.js
+t/lib/App/Layout/Site.js
+t/lib/App/Router.js
+t/lib/App/Widget/Footer.js
+t/lib/App/Widget/Header.js
+t/lib/App/Widget/Home.js
+t/lib/App/Widget/Root.js
+t/lib/App/Widget/Sample.js
+t/visual/index.html
+TODO
