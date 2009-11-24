@@ -15,19 +15,17 @@ StartTest(function(t) {
         //==================================================================================================================================================================================
         t.diag("Application setup")
         
-        App.my.setup()
-        
-        var root = App.my.root
-        
-        root.router.setupHistory('/')
-        
         var async1 = t.beginAsync()
         
-        setTimeout(function () {
+        
+        App.my.__DOM_READY__ = true
+        
+        App.my.run('/').next(function () {
             
             //==================================================================================================================================================================================
             t.diag("Application launch - the '/' route path should be dispatched")
             
+            var root = App.my.root
             var mnemonic = root.router.mnemonic
             var hash = mnemonic.getHash()
             
@@ -86,10 +84,8 @@ StartTest(function(t) {
                 })
                 
             })
-            
-                  
-        }, 500)
-        //eof setTimeout
+        })
+        //eof run
 
       
         t.endAsync(async0)

@@ -4,9 +4,6 @@ Class('App', {
     
         isa : 'Symbie.Application',
         
-        does : 'SymbieX.History.Application',
-        
-        
         
         use : [ 'App.Widget.Root' ],
         
@@ -18,7 +15,7 @@ Class('App', {
         
         methods : {
             
-            setup : function () {
+            seed : function () {
                 this.root = new App.Widget.Root({
                     owner : this
                 })
