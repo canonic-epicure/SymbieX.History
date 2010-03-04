@@ -8,7 +8,7 @@ Class('App.Widget.Root', {
     
     
     has : {
-        routerClass : Joose.FutureClass('App.Router'),
+        routerClass : Joose.I.FutureClass('App.Router'),
         
         title : 'Symbie test application',
         
