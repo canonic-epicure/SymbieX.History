@@ -1,10 +1,14 @@
+doc/html/SymbieX/History/Router.html
+doc/mmd/SymbieX/History/Router.txt
 inc/Module/Build/Functions/DSL.pm
+inc/Module/Build/JSAN.pm
 inc/Module/Build/JSAN/Installable.pm
 inc/Module/JSAN.pm
 inc/Module/JSAN/DSL.pm
 lib/SymbieX/History/Router.js
-MANIFEST			This list of files
+MANIFEST
 MANIFEST.SKIP
+META.json
 README.md
 t/010_basics.t.js
 t/index.html
