@@ -19,7 +19,8 @@ Harness.configure({
 
 Harness.start(
     {
-        url         : '010_basics.t.js',
-        target      : 'Window'
+        url         : '010_basics.t.js'
+//        ,
+//        target      : 'Window'
     }
 )

@@ -14,32 +14,54 @@ Class('App', {
     routes : {
         
         '/home' : function (context) {
-            document.body.innerHTML = 'HOME'
+            context.stash.content.innerHTML = 'HOME'
             
             this.CONTINUE()
         },
         
         
         '/' : function (context) {
-            document.body.innerHTML = 'INDEX'
+            context.stash.content.innerHTML = 'INDEX'
             
             this.CONTINUE()
         },
         
         
         '/sample' : function (context) {
-            document.body.innerHTML = 'SAMPLE'
+            context.stash.content.innerHTML = 'SAMPLE'
             
             this.CONTINUE()
         },
         
         
         '/page' : function (context) {
-            document.body.innerHTML = 'PAGE'
+            context.stash.content.innerHTML = 'PAGE'
             
             this.CONTINUE()
         }
-    }
+    },
     //eof routes
     
+    
+    continued : {
+        
+        methods : {
+            
+            BEGIN : function (context) {
+                var content = document.getElementById('content')
+                
+                if (!content) {
+                    content = document.createElement('div')
+                    
+                    content.id = 'content'
+                    
+                    document.body.appendChild(content)
+                }
+                
+                context.stash.content = content
+                
+                this.CONTINUE()
+            }
+        }
+    }
 })

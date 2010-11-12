@@ -76,18 +76,19 @@ StartTest(function(t) {
             
         }).then(function () {
             
+            //==================================================================================================================================================================================
+            t.diag("Activating Sample widget via 'back'")
+            
             mnemonic.back()
             
             setTimeout(this.getCONTINUE(), 500)
             
         }).then(function () {
-                    
-            //==================================================================================================================================================================================
-            t.diag("Activating Sample widget via 'back'")
             
             t.ok(mnemonic.getCurrentToken() == '/sample', 'Current token is correct')
-            
             t.ok(mnemonic.getHash() == '/sample', 'Current hash value is correct')
+            
+            t.ok(/SAMPLE/.test(body.innerHTML), 'Correct `innerHTML` for /sample route')
             
             t.endAsync(async0)
             t.done()
