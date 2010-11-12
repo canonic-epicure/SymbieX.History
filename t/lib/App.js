@@ -1,25 +1,41 @@
 Class('App', {
     
-    my : {
+    isa         : 'Symbie.Application',
     
-        isa : 'Symbie.Application',
+    does        : 'SymbieX.History',
+    
+    trait       : 'JooseX.Class.Singleton',
+    
+    
+    routes : {
         
-        
-        use : [ 'App.Widget.Root' ],
-        
-        has : {
-            ID                  : 'App'
+        '/home' : function (context) {
+            document.body.innerHTML = 'HOME'
             
+            this.CONTINUE()
         },
         
         
-        methods : {
+        '/' : function (context) {
+            document.body.innerHTML = 'INDEX'
             
-            seed : function () {
-                this.root = new App.Widget.Root({
-                    owner : this
-                })
-            }
+            this.CONTINUE()
+        },
+        
+        
+        '/sample' : function (context) {
+            document.body.innerHTML = 'SAMPLE'
+            
+            this.CONTINUE()
+        },
+        
+        
+        '/page' : function (context) {
+            document.body.innerHTML = 'PAGE'
+            
+            this.CONTINUE()
         }
     }
+    //eof routes
+    
 })

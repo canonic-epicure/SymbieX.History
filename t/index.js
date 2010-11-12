@@ -1,6 +1,6 @@
 var Harness = Test.Run.Harness.Browser.ExtJS
     
-var INC = [ '../lib', '/jsan' ]
+var INC = [ 'lib', '../lib', '/jsan' ]
 
 
 Harness.configure({
@@ -9,20 +9,13 @@ Harness.configure({
     keepResults : true,
     
     preload     : [
-    
-        '=/jsan/Task/Joose/Core.js',
-        "=/jsan/Task/ExtJS/Adapter/Ext.js",
-        '=/jsan/JooseX/Bridge/Ext.js',
-        '=/jsan/JooseX/Bridge/Ext/Convertor.js',
-        "=/jsan/Task/ExtJS/All.js",
-        
-        "=/jsan/ExtX/Reference/Slot.js",
-        
-        "=/jsan/JooseX/SimpleRequest.js",
-        '=/jsan/Task/JooseX/Namespace/Depended/Web.js',
+        'jsan:Task.Symbie.Bundle',
         {
-            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Ext.encode(Harness.absolutizeINC(INC))
-        }
+            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Harness.prepareINC(INC)
+        },
+        'jsan:Jonny.Mnemonic',
+        
+        'SymbieX.History'
     ]
 })
 
@@ -33,47 +26,3 @@ Harness.start(
         target      : 'Window'
     }
 )
-
-
-
-
-//
-//
-//
-//var INC = []
-//Joose.A.each([ 'lib', '../lib', '/jsan' ], function (path) {
-//    INC.push(Test.Run.Harness.Browser.Multi.my.resolveUrl(path, true))
-//}) 
-//
-//
-//Test.Run.Harness.Browser.Multi.my.configure({
-//    title : 'Symbie test suite',
-//    
-//    passThroughEx : true,
-//    
-//    keepWindows : true,
-//    
-//    preload : [
-//        '/jsan/Task/Joose/Core.js',
-//        "/jsan/Task/ExtJS/Adapter/Ext.js",
-//        '/jsan/JooseX/Bridge/Ext.js',
-//        '/jsan/JooseX/Bridge/Ext/Convertor.js',
-//        "/jsan/Task/ExtJS/All.js",
-//        
-//        "/jsan/ExtX/Reference/Slot.js",
-//        
-//        "/jsan/JooseX/SimpleRequest.js",
-//        '/jsan/Task/JooseX/Namespace/Depended/Web.js',
-//        {
-//            text : "JooseX.Namespace.Depended.Manager.my.INC = " + Ext.encode(INC)
-//        }
-//    ]
-//})
-//
-//
-//Test.Run.Harness.Browser.Multi.my.start(
-//    {
-//        url         : '010_basics.t.js',
-//        target      : 'window'
-//    }
-//)

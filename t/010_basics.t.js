@@ -1,7 +1,5 @@
 StartTest(function(t) {
     
-    t.plan(9)
-    
     var async0 = t.beginAsync()
     
     use([ 'App' ], function () {
@@ -9,86 +7,84 @@ StartTest(function(t) {
         //==================================================================================================================================================================================
         t.diag("Sanity")
         
-        t.ok(App.my, "App.my is here")
+        t.ok(App, "App is here")
         
+        var body    = document.body
 
         //==================================================================================================================================================================================
         t.diag("Application setup")
         
-        var async1 = t.beginAsync()
+        var mnemonic
         
-        
-        App.my.__DOM_READY__ = true
-        
-        App.my.run('/').next(function () {
+        App().run('/').then(function () {
             
             //==================================================================================================================================================================================
             t.diag("Application launch - the '/' route path should be dispatched")
             
-            var root = App.my.root
-            var mnemonic = root.router.mnemonic
-            var hash = mnemonic.getHash()
+            mnemonic = App().mnemonic
             
             t.ok(mnemonic.getCurrentToken() == '/', 'Current token is root path')
+            t.ok(mnemonic.getHash() == null, 'Current hash value is correct - empty value')
             
-            t.ok(hash == null, 'Current hash value is correct - empty value')
+            t.ok(/INDEX/.test(body.innerHTML), 'Correct `innerHTML` for initial route')
             
+            this.CONTINUE()
+            
+        }).then(function () {
             
             //==================================================================================================================================================================================
             t.diag("Switching widget in center")
             
-            root.dispatch('/sample').next(function (context) {
+            App().dispatch('/sample').andThen(function (context) {
                 
                 //==================================================================================================================================================================================
                 t.diag("Activating Sample widget")
                 
-                var hash = mnemonic.getHash()
-                
                 t.ok(mnemonic.getCurrentToken() == '/sample', 'Current token is correct')
+                t.ok(mnemonic.getHash() == '/sample', 'Current hash value is correct')
                 
-                t.ok(hash == '/sample', 'Current hash value is correct')
+                t.ok(/INDEX/.test(body.innerHTML), 'Correct `innerHTML` for /sample route')
                 
-                
-                //==================================================================================================================================================================================
-                t.diag("Switching widget in center back")
-                
-                root.dispatch('/home').next(function (context) {
-                    
-                    //==================================================================================================================================================================================
-                    t.diag("Activating Home widget")
-                    
-                    var hash = mnemonic.getHash()
-                    
-                    t.ok(mnemonic.getCurrentToken() == '/home', 'Current token is correct')
-                    
-                    t.ok(hash == '/home', 'Current hash value is correct')
-                    
-                    
-                    mnemonic.back()
-                    
-                    setTimeout(function () {
-                        
-                        //==================================================================================================================================================================================
-                        t.diag("Activating Sample widget via 'back'")
-                        
-                        var hash = mnemonic.getHash()
-                        
-                        t.ok(mnemonic.getCurrentToken() == '/sample', 'Current token is correct')
-                        
-                        t.ok(hash == '/sample', 'Current hash value is correct')
-                        
-                        t.endAsync(async1)
-                        
-                    }, 500)
-                    
-                })
-                
+                this.CONTINUE()
             })
-        })
-        //eof run
-
-      
-        t.endAsync(async0)
+            
+        }).then(function () {
+                
+            //==================================================================================================================================================================================
+            t.diag("Switching widget in center back")
+            
+            App().dispatch('/home').andThen(function (context) {
+                    
+                //==================================================================================================================================================================================
+                t.diag("Activating Home widget")
+                
+                t.ok(mnemonic.getCurrentToken() == '/home', 'Current token is correct')
+                t.ok(mnemonic.getHash() == '/home', 'Current hash value is correct')
+                    
+                t.ok(/HOME/.test(body.innerHTML), 'Correct `innerHTML` for /home route')
+                    
+                this.CONTINUE()
+            })
+            
+        }).then(function () {
+            
+            mnemonic.back()
+            
+            setTimeout(this.getCONTINUE(), 500)
+            
+        }).then(function () {
+                    
+            //==================================================================================================================================================================================
+            t.diag("Activating Sample widget via 'back'")
+            
+            t.ok(mnemonic.getCurrentToken() == '/sample', 'Current token is correct')
+            
+            t.ok(mnemonic.getHash() == '/sample', 'Current hash value is correct')
+            
+            t.endAsync(async0)
+            t.done()
+        
+        }).now()
     })
     
 })
