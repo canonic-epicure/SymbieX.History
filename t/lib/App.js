@@ -2,7 +2,11 @@ Class('App', {
     
     isa         : 'Symbie.Application',
     
-    does        : 'SymbieX.History',
+    plugins     : {
+        'SymbieX.History' : {
+            hashFrom    : 'window'
+        }
+    },
     
     trait       : 'JooseX.Class.Singleton',
     

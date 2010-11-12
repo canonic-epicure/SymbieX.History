@@ -32,6 +32,10 @@ StartTest(function(t) {
             
         }).then(function () {
             
+            setTimeout(this.getCONTINUE(), 0)
+            
+        }).then(function () {
+            
             //==================================================================================================================================================================================
             t.diag("Switching widget in center")
             
@@ -43,10 +47,14 @@ StartTest(function(t) {
                 t.ok(mnemonic.getCurrentToken() == '/sample', 'Current token is correct')
                 t.ok(mnemonic.getHash() == '/sample', 'Current hash value is correct')
                 
-                t.ok(/INDEX/.test(body.innerHTML), 'Correct `innerHTML` for /sample route')
+                t.ok(/SAMPLE/.test(body.innerHTML), 'Correct `innerHTML` for /sample route')
                 
                 this.CONTINUE()
             })
+            
+        }).then(function () {
+            
+            setTimeout(this.getCONTINUE(), 0)
             
         }).then(function () {
                 
